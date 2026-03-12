@@ -1,32 +1,89 @@
-# OpenClaw Deploy Ninja 🥷🦞
+# OpenClaw Deploy Ninja
 
-**OpenClaw 最强“零依赖”、抗崩溃自动化部署技能。**
+一个面向 OpenClaw 的一键安装脚本项目，目标是把「安装 + 安全加固 + 渠道配置 + Agent 绑定」一次走完。
 
-这是一个专为 AI 编程助手（如 opencode, Claude Code, Codex 等）设计的核心技能（Skill）。只要把这个技能交给你的 AI，它就能像一个资深运维专家一样，为你完美、无痕地在 macOS 或 Linux 上部署和配置 [OpenClaw](https://openclaw.ai)。
+## 项目亮点
 
-## 🌟 为什么需要这个 Skill？
+1. 安全优先：默认仅主 Agent 保留宿主机操作能力，子 Agent 运行在 Docker 沙箱，避免 OpenClaw 裸奔。
+2. 自动安装 `openclaw-china/channels` 插件，开箱即用中国区渠道能力。
+3. 向导式配置渠道：支持 Telegram、钉钉、飞书（中国版）、企业微信。
+4. 向导式 Agent 配置：支持主 Agent + 多子 Agent，并支持渠道多账号绑定。
+5. 双安装模式：支持联网安装和本地离线安装，兼顾可翻墙与不可翻墙场景。
 
-OpenClaw 极其强大，但它的系统级守护进程配置对新手来说很容易踩坑。这个技能包能让 AI 帮你实现“无菌室”级别的全自动安装：
+## 支持平台
 
-- **绝对的零依赖 (Zero Dependencies)**：你的电脑上甚至不需要安装 Node.js！脚本会自动探测你的 CPU 架构（Intel 或 ARM64 / M系列芯片），并把专用的 Node 环境封装在私有目录中，绝不污染你本机的环境。
-- **Mac 外接硬盘免疫 (破解 Exit Code 78)**：如果你选择把 OpenClaw 安装到外置硬盘（`/Volumes/...`），macOS 严苛的 `launchd` 防火墙会拒绝写入日志并导致服务崩溃。这个技能内置了底层修复逻辑，让外接硬盘安装也能一次点亮！（Linux系统原生完美支持）。
-- **智能“三岔路口”模型向导**：它会像人一样主动询问并支持 3 种用户的配置需求：
-  1. **官方账号白嫖党**：引导通过浏览器登录，利用 Google Gemini CLI 或 OpenAI Codex 的免费 OAuth 通道。
-  2. **直连氪金大佬**：原生配置 Anthropic 或 OpenAI 的官方 API Key。
-  3. **第三方中转/网关用户（小白福音）**：只需告诉 AI 你的 `BaseURL` 和 `API Key`，它会自动帮你写好复杂的 JSON 配置文件，并配置好完美的“国产高性价比基座 + 顶级代码模型兜底”策略。
+- macOS (Intel / Apple Silicon)
+- Linux (x64)
 
-## 🚀 如何使用 (How to Use)
+## 快速开始
 
-由于你还没有安装 OpenClaw，你需要让**你手头现有的 AI 编程助手**（比如 opencode, Claude Code, Cursor 里的 Agent，或是命令行版 Codex）来执行这个技能：
+```bash
+chmod +x openclaw-install.sh
+./openclaw-install.sh
+```
 
-1. 下载本仓库的 `SKILL.md` 文件。
-2. 将它放到你当前使用的 AI 助手的 `skills`（技能/规则）目录中。或者直接把这个文件的内容复制喂给你的 AI。
-3. 在聊天框中对 AI 发送以下指令：
-   > *"使用 openclaw-deploy-ninja 技能帮我把 OpenClaw 部署到本机。"*
-4. 接下来，你只需要喝口茶。AI 会自动接管终端，中途它会弹窗采访你“想安装在哪个盘？”以及“想用哪种模型方案？”，最后它会直接把配置好带 Token 的 Dashboard 链接发到你的屏幕上。
+脚本执行后会进入交互式向导，依次完成：
 
-## 📂 项目结构
-- `SKILL.md`：核心的 AI Agent 技能定义文件，基于标准的 Markdown 编写，任何高级大模型均可无障碍理解并执行。
+- 安装模式选择（联网 / 本地）
+- 模型区域选择（国外 / 国内）
+- OpenClaw 安装与 Onboard
+- 插件与依赖安装
+- 主 Agent 与子 Agent 配置
+- 渠道账号录入与绑定
+- 状态检查与控制台打开
 
----
-*这个技能诞生于对抗 macOS 守护进程和 SSRF 网络代理的深坑之中。不要再和终端配置搏斗了，让 Agent 来部署 Agent。*
+## 两种安装模式
+
+### 1) 联网安装
+
+适用于可访问外网环境。脚本会自动安装或升级依赖并安装最新 OpenClaw。
+
+### 2) 本地离线安装
+
+适用于受限网络环境。请提前将离线包放到项目根目录下的 `offline-packages/`。
+
+必需文件名模式如下：
+
+- `openclaw-*.tgz`
+- `clawhub-*.tgz`
+- `openclaw-china-channels-*.tgz`
+- `node-v*-<os>-<arch>.tar.gz` 或 `node-v*-<os>-<arch>.tar.xz`
+- macOS: `Docker-arm64.dmg` 或 `Docker-amd64.dmg`
+- Linux: `get-docker.sh`
+
+> 建议将离线包按上述命名放入 `offline-packages/`，脚本会自动识别并校验。
+
+## 安全模型说明
+
+- 主 Agent (`main`)：负责总体编排与管理。
+- 子 Agent：默认被限制在沙箱策略内，避免直接获得宿主机高风险操作能力。
+- 可执行型子 Agent：执行能力仍绑定在 Docker 沙箱中，并启用命令白名单与工作区文件访问限制。
+
+## 渠道与账号绑定
+
+向导会引导你为每个 Agent 选择管理渠道，并支持：
+
+- Telegram
+- 钉钉
+- 企业微信（Webhook 或应用模式）
+- 飞书中国版
+
+支持同一渠道多账号配置，并可按 `channel:accountId` 进行精细绑定。
+
+## 卸载
+
+```bash
+./openclaw-install.sh uninstall
+```
+
+卸载会清理 OpenClaw 数据目录、npm 全局包以及脚本创建的相关沙箱容器。
+
+## 常用目录
+
+- 安装根目录：`~/.openclaw`
+- 配置目录：`~/.openclaw/conf`
+- 本地 npm 前缀：`~/.openclaw/npm-global`
+
+## 免责声明
+
+本项目用于自动化部署与配置辅助。请在使用前确认你的渠道账号、API 密钥与企业合规要求，并在生产环境先做灰度验证。
